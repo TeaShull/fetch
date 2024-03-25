@@ -37,6 +37,6 @@ async fn download_images(image_urls: &[String]) -> Result<(), Error> {
 }
 
 fn main() {
-    let url = "https://boards.4chan.org/fit/thread/73870683";
+    let url = "";
     tokio::runtime::Runtime::new().unwrap().block_on(fetch_webpage(url)).unwrap();
 }
