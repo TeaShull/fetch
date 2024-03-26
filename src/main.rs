@@ -86,7 +86,7 @@ async fn download_file(file_url: &str, target_dir: &Path) -> Result<()> {
     Ok(())
 }
 
-// Ensures that the target directory exists
+// Ensure target directory exists
 async fn ensure_directory_exists(target_dir: &Path) -> Result<()> {
     fs::create_dir_all(target_dir)
         .await
@@ -94,7 +94,7 @@ async fn ensure_directory_exists(target_dir: &Path) -> Result<()> {
     Ok(())
 }
 
-// Construct the full file path for the downloaded file.
+// Construct the full file path
 fn construct_file_path(target_dir: &Path, file_name: &str) -> Result<PathBuf, anyhow::Error> {
     let file_path = target_dir.join(file_name);
     match file_path.to_str() {
@@ -103,7 +103,7 @@ fn construct_file_path(target_dir: &Path, file_name: &str) -> Result<PathBuf, an
     }
 }
 
-// Extracts the file name from a URL.
+// Extract file name from URL.
 fn extract_filename_from_url(file_url: &Url) -> String {
     file_url.path_segments()
         .and_then(|segments| segments.last())
@@ -112,9 +112,9 @@ fn extract_filename_from_url(file_url: &Url) -> String {
 }
 
 fn main() -> Result<()> {
-    let url = "";
-    let extensions = ["pdf", "mp4"];
-    let target_dir = Path::new("downloads"); // Specify your target directory
+    let url = "https://example.com";
+    let extensions = ["jpg", "png", "gif", "mp3"];
+    let target_dir = Path::new("downloads"); 
     
     Runtime::new()?.block_on(fetch_webpage_and_download_files(url, &extensions, &target_dir))?;
     Ok(())
